@@ -1,5 +1,12 @@
 require 'rubygems'
 require 'rake'
+require 'date'
+
+$: << File.dirname(__FILE__)
+if defined?(Encoding)
+  Encoding.default_external = 'UTF-8'
+  Encoding.default_internal = 'UTF-8'
+end
 
 def staticmatic(command)
   require '.haml/lib/haml'
@@ -38,7 +45,10 @@ end
 
 file ".haml" do
   sh %{git clone -l -s . .haml}
-  Dir.chdir(".haml") {sh %{git checkout origin/stable}}
+  Dir.chdir(".haml") do
+    sh %{git checkout origin/stable}
+    sh %{git submodule update --init}
+  end
 end
 
 task(:default) {puts "Dummy default task for RunCodeRun"}

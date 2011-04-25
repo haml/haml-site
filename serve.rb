@@ -1,9 +1,9 @@
 require '.haml/lib/haml'
 require 'rubygems'
-gem 'sinatra-sinatra'
 require 'sinatra'
 require 'sinatra/dynamicmatic'
 require 'timeout'
+require 'date'
 
 get('/try.html') {haml :try}
 
