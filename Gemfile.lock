@@ -1,0 +1,35 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    chunky_png (1.2.0)
+    compass (0.11.3)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    dynamicmatic (0.1.0)
+      sinatra (>= 0.10.1)
+      staticmatic (>= 0.10.7)
+    fssm (0.2.7)
+    haml (3.1.2)
+    maruku (0.6.0)
+      syntax (>= 1.0.0)
+    rack (1.3.0)
+    sass (3.1.3)
+    sinatra (1.2.6)
+      rack (~> 1.1)
+      tilt (< 2.0, >= 1.2.2)
+    staticmatic (0.11.1)
+      compass (>= 0.10.0)
+      haml (>= 2.0.0)
+      rack (>= 1.0)
+    syntax (1.0.0)
+    tilt (1.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dynamicmatic
+  haml
+  maruku
+  sinatra
