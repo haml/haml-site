@@ -1,4 +1,3 @@
-require '.haml/lib/haml'
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/dynamicmatic'
