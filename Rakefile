@@ -13,7 +13,7 @@ def staticmatic(command)
   require '.haml/lib/haml'
   require 'staticmatic'
   configuration = StaticMatic::Configuration.new
-  eval(File.read("src/configuration.rb"))
+  eval(File.read("config/site.rb"))
   StaticMatic::Base.new(".", configuration).run(command)
 end
 
