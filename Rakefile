@@ -26,6 +26,9 @@ task(:site => :haml) {staticmatic "build"}
 desc "Preview the site with StaticMatic."
 task(:preview => :haml) {staticmatic "preview"}
 
+desc "Sync files to web server"
+task(:sync) { sh "rsync -e 'ssh -p 2233' -avz site/ rubysouth.org:/var/sites/haml-lang.com/"}
+
 desc "Build the YARD documentation."
 task :yardoc => :haml do
   require 'fileutils'
@@ -46,9 +49,7 @@ end
 
 file ".haml" do
   sh %{git clone --depth 1 git://github.com/haml/haml.git .haml}
-  Dir.chdir(".haml") do 
+  Dir.chdir(".haml") do
     sh %{git checkout origin/stable}
   end
 end
-
-task(:default) {puts "Dummy default task for RunCodeRun"}
