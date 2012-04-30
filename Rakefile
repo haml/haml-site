@@ -3,6 +3,8 @@ require "bundler/setup"
 require 'rake'
 require 'date'
 
+task :default => :preview
+
 $: << File.dirname(__FILE__)
 if defined?(Encoding)
   Encoding.default_external = 'UTF-8'
