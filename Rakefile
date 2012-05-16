@@ -29,7 +29,7 @@ desc "Preview the site with StaticMatic."
 task(:preview => :haml) {staticmatic "preview"}
 
 desc "Sync files to web server"
-task(:sync) { sh "rsync -e 'ssh -p 2233' -avz site/ rubysouth.org:/var/sites/haml-lang.com/"}
+task(:sync) { sh "rsync -e 'ssh -p 2233' -avz site/ haml.info:/var/sites/haml.info/"}
 
 desc "Build the YARD documentation."
 task :yardoc => :haml do
