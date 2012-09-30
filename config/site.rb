@@ -9,17 +9,13 @@ Compass.configuration do |config|
   config.sass_dir = File.join('src', 'stylesheets' )
 end
 
-# sass_engine_options returns a hash, you can merge it with other options.
-configuration.sass_options = Compass.sass_engine_options
-configuration.sass_options[:debug_info] = (ARGV[0] == "preview")
-
 module StaticMatic::Helpers
   def local_page
     current_page.gsub(/\.html$/, '').gsub(/\/index$/, '').gsub(/^\//, '')
   end
 
   def css
-    (["#haml"] + local_page.split(File::SEPARATOR)).join(".")
+    (["Haml"] + local_page.capitalize.split(File::SEPARATOR)).join(" :: ")
   end
 
   def h_and_preserve(content = nil, &block)
