@@ -1,155 +1,134 @@
-:markdown
-  Before we start this tutorial, I want to make one thing clear.
-  After you look at this, go and convert one of your ERB files to Haml.
-  Just try it. Just take the file and start hitting delete. Do it.
-  You don't have to keep the file if you don't like it.
-  But after you're done with this tutorial, just try one file.
+.content
+  %h1
+    = img 'img-badge-tutorial.png', alt: 'Tutorial'
+    Tutorial
+  = partial 'subnav'
 
-  Haml feels odd for the first 20 minutes, but then after that **you will be faster**.
+  :markdown
+    Before we start this tutorial, I want to make one thing clear. After you look at this, go and convert one of your ERB files to Haml. Just try it. Just take the file and start hitting delete. You don't have to keep the file if you don't like it, but after you're done with this tutorial, just try one file.
 
-  ## Getting Started
+    Haml feels odd for the first 20 minutes, but then after that **you will be faster**.
 
-  First, [get Haml](/download.html) and [install the plugin](/docs/yardoc/file.HAML_REFERENCE.html#plugin)
-  (this tutorial assumes you're using Rails...
-  it should apply to other frameworks and standalone Haml just as well, though).
-  Haml is a drop-in replacement for ERB.
-  That means any file in your `app/views` folder can be switched over
-  to Haml by simply changing the extension of the file.
+    ## Getting Started
 
-  <pre><code>app/views/account/login.html.erb &rarr; app/views/account/login.html.haml</code></pre>
+    First, [get Haml](/download.html) and [install the plugin](/docs/yardoc/file.HAML_REFERENCE.html#plugin) (this tutorial assumes you're using Rails &mdash; it should apply to other frameworks and standalone Haml just as well, though). Haml is a drop-in replacement for ERB. That means any file in your `app/views` folder can be switched over to Haml by simply changing the extension of the file.
 
-  Now, when you view that page, instead of ERB getting its hands on the template,
-  it's handled by Haml instead. You can mix up ERB and Haml and on the fly
-  throughout your site.
+    <pre>app/views/account/login.html.erb &rarr; app/views/account/login.html.haml</pre>
 
-  ## How to Convert
+    Now, when you view that page, instead of ERB getting its hands on the template, it's handled by Haml instead. You can mix up ERB and Haml and on the fly throughout your site.
 
-  Let's start off with some basic ERB that we want to convert.
+    ## How to Convert
 
-%h4 ERB
-%pre.erb
-  = h_and_preserve do
-    :plain
-      <strong><%= item.title %></strong>
+    Let's start off with some basic ERB that we want to convert.
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      %strong= item.title
+  %h3 ERB
+  %pre
+    = h_and_preserve do
+      :plain
+        <strong><%= item.title %></strong>
 
-:markdown
-  In Haml, we write a tag by using the percent sign and then the name
-  of the tag. This works for `%strong`, `%div`, `%body`, `%html`; any
-  tag you want. Then, after the name of the tag is `=`, which tells
-  Haml to evaluate Ruby code to the right and then print out the
-  return value as the contents of the tag. Unlike the ERB above, Haml
-  will automatically detect newlines in the return value
-  and format the tag properly.
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        %strong= item.title
 
-  Simple tags are all well and good, but what about adding attributes
-  to tags? 
+  :markdown
+    In Haml, we write a tag by using the percent sign and then the name of the tag. This works for `%strong`, `%div`, `%body`, `%html`; any tag you want. Then, after the name of the tag is `=`, which tells Haml to evaluate Ruby code to the right and then print out the return value as the contents of the tag. Unlike the ERB above, Haml will automatically detect newlines in the return value and format the tag properly.
 
-%h4 HTML
-%pre.html
-  = h_and_preserve do
-    :plain
-      <strong class="code" id="message">Hello, World!</strong>
+    ## Adding Attributes
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      %strong{:class => "code", :id => "message"} Hello, World!
+    Simple tags are all well and good, but what about adding attributes to tags? 
 
-:markdown
-  The attributes are just a standard Ruby hash. The `class` attribute
-  is "code", the `id` attribute is "message".  Notice that in this
-  example, we didn't use `=`, so "Hello, World!" is interpreted as a
-  normal string, not Ruby code.
+  %h3 HTML
+  %pre.html
+    = h_and_preserve do
+      :plain
+        <strong class="code" id="message">Hello, World!</strong>
 
-  There is a simpler way to define this tag in Haml, since `class` and
-  `id` are such common attributes and since most designers (and
-  coders) are familiar with CSS, we can use similar notation to
-  describe this tag.
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        %strong{:class => "code", :id => "message"} Hello, World!
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      %strong.code#message Hello, World!
+  :markdown
+    The attributes are just a standard Ruby hash. The `class` attribute is "code", the `id` attribute is "message".  Notice that in this example, we didn't use `=`, so "Hello, World!" is interpreted as a normal string, not Ruby code.
 
-:markdown
-  Not only that, but since `div` tags are so common, you can leave off
-  the tag definition and have it default to `%div`.
+    There is an easier way to define this tag in Haml, since `class` and `id` are such common attributes and since most designers (and developers) are familiar with CSS, we can use similar notation to describe this tag.
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      .content Hello, World!
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        %strong.code#message Hello, World!
 
-%h4 HTML
-%pre.html
-  = h_and_preserve do
-    :plain
-      <div class='content'>Hello, World!</div>
+  :markdown
+    Not only that, but since `div` tags are so common, you can leave off the tag definition and have it default to `%div`.
 
-:markdown
-  Now what about something a little more complicated?
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        .content Hello, World!
 
-%h4 ERB
-%pre.erb
-  = h_and_preserve do
-    :plain
-      <div class='item' id='item<%= item.id %>'>
-        <%= item.body %>
-      </div>
+  %h3 HTML
+  %pre.html
+    = h_and_preserve do
+      :plain
+        <div class='content'>Hello, World!</div>
 
-:markdown
-  Pretty basic. This might be part of a partial or something.
-  Let's convert it to Haml.
+  :markdown
+    ## Upping the Complexity
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      .item{:id => "item\#{item.id}"}= item.body
+    Now what about something a little more complicated?
 
-:markdown
-  This stuff is fun!
-
-  Now, nesting is taken care of in Haml via whitespace.
-
-%h4 ERB
-%pre.erb
-  = h_and_preserve do
-    :plain
-      <div id='content'>
-        <div class='left column'>
-          <h2>Welcome to our site!</h2>
-          <p><%= print_information %></p>
+  %h3 ERB
+  %pre
+    = h_and_preserve do
+      :plain
+        <div class='item' id='item<%= item.id %>'>
+          <%= item.body %>
         </div>
-        <div class="right column">
-          <%= render :partial => "sidebar" %>
+
+  :markdown
+    Pretty basic. This might be part of a partial or something. Let's convert it to Haml.
+
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        .item{:id => "item\#{item.id}"}= item.body
+
+  :markdown
+    This stuff is fun! Now, nesting is taken care of in Haml via whitespace.
+
+  %h3 ERB
+  %pre
+    = h_and_preserve do
+      :plain
+        <div id='content'>
+          <div class='left column'>
+            <h2>Welcome to our site!</h2>
+            <p><%= print_information %></p>
+          </div>
+          <div class="right column">
+            <%= render :partial => "sidebar" %>
+          </div>
         </div>
-      </div>
 
-%h4 Haml
-%pre.haml
-  = h_and_preserve do
-    :plain
-      #content
-        .left.column
-          %h2 Welcome to our site!
-          %p= print_information
-        .right.column
-          = render :partial => "sidebar"
+  %h3 Haml
+  %pre.haml
+    = h_and_preserve do
+      :plain
+        #content
+          .left.column
+            %h2 Welcome to our site!
+            %p= print_information
+          .right.column
+            = render :partial => "sidebar"
 
-:markdown
-  Look at that. Doesn't that just make you smile?
+  :markdown
+    Look at that. Doesn't that just make you smile?
 
-  There is a lot more to learn, so I'd highly recommend checking out
-  the [Reference](/docs/yardoc/file.HAML_REFERENCE.html). It's filled
-  with awesome little tricks that we've added to Haml to make building
-  sites even more fun.
+    There is a lot more to learn, so I'd highly recommend checking out the [reference](/docs/yardoc/file.HAML_REFERENCE.html). It's filled with awesome little tricks that we've added to Haml to make building sites even more fun.

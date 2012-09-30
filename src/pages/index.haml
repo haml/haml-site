@@ -1,83 +1,55 @@
-:maruku
-  <blockquote cite="http://blog.obiefernandez.com/content/2008/01/are-you-using-h.html" markdown="1">
-  "All of Hashrocket's new projects are done in Haml, and we've now
-  decided to transition everything else in our portfolio over to Haml
-  as soon as possible. The indentation-based approach works wonders
-  for generating clean, semantic markup and the way that you can see
-  the structure of your markup in a way that easily maps to CSS rules
-  is simply brilliant."
-  - ['Are you using Haml?' - Obie Fernandez](http://blog.obiefernandez.com/content/2008/01/are-you-using-h.html)
-  </blockquote>
+.hero
+  .box.boat
+    = img 'img-hero.png', alt: 'Haml'
+    = img 'img-hero-boat.png', class: 'boat-img', alt: 'Templating Haiku'
+  .box
+    %h1
+      Beautiful, DRY,<br />
+      well-indented, clear markup:<br />
+      %strong templating haiku.
+    %p
+      = link 'Download Haml', '/download.html', class: 'btn'
+      %b
+        Latest: <strong>#{Haml.version[:number]}</strong> -
+        %strong= link "What's New?", '/docs/yardoc/file.HAML_CHANGELOG.html'
 
-  <blockquote cite="http://www.ralree.info/2007/2/8/cheating-on-erb-with-haml" markdown="1">
-    "It's so easy! Anyone can do it. Haml is sweeping the rails world
-    like a wildfire of chicken, and everyone wants the biggest piece.
-    I decided to try it last night on my new wallpaper site,
-    and found that it's extremely awesome to work with."
-    - ['Cheating on ERB with Haml' - Erik Gregg, Schadenfreude](http://www.ralree.info/2007/2/8/cheating-on-erb-with-haml)
-  </blockquote>
-
-  <blockquote cite="http://railspikes.com/2007/4/9/haml-grigsby-s-first-rule" markdown="1">
-    "Any sufficiently complicated rhtml partial contains an ad hoc,
-    informally-specified, bug-ridden, implementation of half of Haml."
-    - ['Grigsby's First Rule', Dan Grigsby, Rail Spikes](http://railspikes.com/2007/4/9/haml-grigsby-s-first-rule)
-  </blockquote>
-
-  What is it?
-  -----------
-
-  Haml takes your gross, ugly templates and replaces them with veritable **Haiku**.
-
-  Haml is the next step in generating views in your Rails application.
-  Haml is a refreshing take that is meant to free us from the shitty templating
-  languages we have gotten used to.
-
-  Haml is based on one primary principle. *Markup should be beautiful*.
-
-  However, its not beauty for beauty's sake. [Unspace Interactive](http://www.unspace.ca)
-  and several other professional Rails shops use Haml exclusively
-  for every one of their projects. In fact, it was created for use
-  in highly productive environments. The beauty makes you *faster*.
-
-  Haml is a real solution to a real problem. Stop using the slow, repetitive,
-  and annoying templates that you don't even know how much you hate yet.
-  Try something new --- make templates fun and beautiful again!
-
-  **If you sit down and try using Haml, you will learn it within 20 minutes.**
-
-  Give yourself 5 minutes to read the [Tutorial](/tutorial.html)
-  and then go convert one of your ERB templates to Haml.
-  Feel the power of the Delete key. Simplify. Enjoy. Laugh.
-  20 minutes later, you will never go back.
-
-#showdown
-  %h2
-    %span The Showdown
-  .haml.lang
-    %h3 Haml
+.sample
+  .box
+    %h2.sample-erb .erb
     %pre
       :preserve
-        #profile
-          .left.column
-            #date= print_date
-            #address= current_user.address
-          .right.column
-            #email= current_user.email
-            #bio= current_user.bio
-
-  .erb.lang
-    %h3 ERB
+        &lt;<b class="tag">section</b> class<b class="pun">=”</b>container<b class="pun">”</b>&gt;
+          &lt;<b class="tag">h1</b>&gt;&lt;<b class="pun">%= post.title %</b>&gt;&lt;/<b class="tag">h1</b>&gt;
+          &lt;<b class="tag">h2</b>&gt;&lt;<b class="pun">%= post.subtitle %</b>&gt;&lt;/<b class="tag">h2</b>&gt;
+          &lt;<b class="tag">div</b> class<b class="pun">=”</b>content<b class="pun">”</b>&gt;
+            &lt;<b class="pun">%= post.content %</b>&gt;
+          &lt;/<b class="tag">div</b>&gt;
+        &lt;/<b class="tag">section</b>&gt;
+  .box
+    %h2.sample-haml .haml
     %pre
-      = h_and_preserve do
-        :plain
-          <div id="profile">
-            <div class="left column">
-              <div id="date"><%= print_date %></div>
-              <div id="address"><%= current_user.address %></div>
-            </div>
-            <div class="right column">
-              <div id="email"><%= current_user.email %></div>
-              <div id="bio"><%= current_user.bio %></div>
-            </div>
-          </div>
-  .clear
+      :preserve
+        %<b class="tag">section</b>.<b class="tag">container</b>
+          %<b class="tag">h1</b><b class="pun">=</b> post.title
+          %<b class="tag">h2</b><b class="pun">=</b> post.subtitle
+          .<b class="tag">content</b>
+            <b class="pun">=</b> post.content
+
+.content.about
+  .box
+    %h2 What is it?
+    %p Haml (HTML abstraction markup language) is based on one primary principle: <em>markup should be beautiful</em>. It’s not just beauty for beauty’s sake either; Haml accelerates and simplifies template creation down to veritable haiku.
+    %p <a href="http://www.unspace.ca">Unspace Interactive</a> and several other professional Rails shops use Haml exclusively for their projects, valuing its focus on cleanliness, readability, and production speed.
+    %p Give yourself 5 minutes to read the <a href="/tutorial.html">tutorial</a> and then convert one of your ERB templates to Haml. Simplify. Enjoy. Laugh. 20 minutes later, you will never go back.
+  = img 'img-about.png', alt: 'About Haml'
+
+%ul.quotes
+  %li
+    %blockquote Emotions when returning to haml (after erb): 1. This code looks pretty... 2. This is madness! 3. Hey, I remember how it's done. 4. Marry&nbsp;me?
+    = link '@eishe', 'http://twitter.com/eishe'
+  %li.alt
+    %blockquote We have used Haml in every web project for the past 2 years and it has saved us an inestimable amount of time. Just&nbsp;brilliant.
+    = link '@edenspiekermann', 'http://twitter.com/edenspiekermann'
+  %li
+    %blockquote The world would be a much better place if you used more HAML and less ERB. Stop being lazy and learn it today. #ruby takes over my&nbsp;brain.
+    = link '@tobrien', 'http://twitter.com/tobrien'

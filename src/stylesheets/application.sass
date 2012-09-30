@@ -1,163 +1,334 @@
-/* Haml
- * Design & CSS - Lukas Dryja
- * http://www.lukasdryja.com
- * --------------------
+//---------------------------------------
+//  Global
+//---------------------------------------
 
-@import compass/css3/inline-block
-@import compass/css3/border-radius
-@import blueprint/buttons
+@import "compass"
 
-@import vars
-@import header
-@import sidebar
-@import showdown
-@import try
+// ----- Settings & Base ----- //
 
-*
-  margin: 0
-  padding: 0
+@import "reset"
+@import "settings"
+@import "base"
 
-html, body
-  padding: 0
-  background: white
-  color: #090909
-  height: 100%
-  font: 13px / 21px Georgia, Garamond, Times, "Times New Roman", serif
-  border-top: 2px solid #{$main-color}
+//---------------------------------------
+//  Modules
+//---------------------------------------
 
+// ----- Buttons ----- //
 
-a
-  text-decoration: underline
-  outline: none
-  color: $main-color
-
-  &:hover
-    color: $main-color + #666666
-
-
-p
-  margin-bottom: 18px
-
-
-#page
-  margin: 0 auto
-  padding: 0 30px
-  width: 795px
-
-
-a img
-  border: none
-
-
-.clear
-  clear: both
-
-
-h2
-  padding-top: 15px
-  font-size: 24px
-  font-weight: normal
-  padding-bottom: 10px
-
-
-h3
-  padding-top: 15px
-  font-size: 17px
+.btn
+  +adjust-font-size-to(18px)
+  +background(linear-gradient($color-link, darken($color-link,10%)))
+  +trailer(1,18px)
+  +transition(background 0.2s ease-in-out)
+  background-color: $color-link
+  border-radius: 3px
+  box-shadow: inset 0 -1px 0 #6f1e19, 0 2px 3px rgba(#000,0.3)
+  color: #fff
+  display: inline-block
   font-weight: bold
-
-
-ul
-  padding-left: 20px
-
-/* Intro paragraph
- * --------------------
-p
-  &.mainintro
-    float: left
-    text-indent: -9999px
-    margin-left: -29px
-    margin-right: 200px
-    height: 270px
-    width: 532px
-    margin-top: 40px
-    margin-bottom: 60px
-    background: url(/images/maindescription.gif) no-repeat top left
-  &.intro
-    margin-top: 20px
-    margin-right: 50px
-    line-height: 25px
-    font-size: 14px
-
-blockquote
-  margin-bottom: 19px
-  font-style: italic
-  color: #757575
-
-/* Main
- * --------------------
-#main
-  margin: 0 auto
-  position: relative
-  clear: both
-  padding-top: 40px
-  &:after
-    clear: both
-    display: block
-    content: ""
-
-  h1
-    margin-bottom: 10px
-
-/* Footer
- * --------------------
-#footer
-  padding-top: 10px
-  font-style: italic
-  font-size: 9px
-  clear: both
+  line-height: $base-line-height * 2
+  margin-right: 10px
+  padding: 0 40px
   text-align: center
+  &:hover,
+  &:focus
+    +background(linear-gradient(lighten($color-link,5%), $color-link))
+    color: #fff
+    text-decoration: none
+  &:active
+    +background(linear-gradient(darken($color-link,5%), darken($color-link,15%)))
 
+// ----- Quotes ----- //
 
-/* Misc
- * --------------------
-dt
-  padding-top: 10px
-  padding-left: 10px
-  font-size: 14px
-  font-weight: bold
+.quotes
+  @extend .block
+  li
+    list-style: none
+    margin: 0
+    +trailer(1)
+    position: relative
+  blockquote
+    +padding-leader(2)
+    +padding-trailer(2)
+    background: $color-base
+    color: $color-bg
+    padding-left: 30px
+    padding-right: 30px
+    position: relative
+    text-align: center
+    &:after
+      background: url('../images/bg-quote.png') no-repeat
+      bottom: -22px
+      content: ''
+      display: block
+      height: 22px
+      position: absolute
+      right: 35px
+      width: 25px
+  a
+    +adjust-leading-to(2)
+    font-weight: bold
 
+  // Media Queries
 
-dd
-  padding-left: 20px
+  +respond-to(815px)
+    li
+      float: left
+      margin: 0
+      width: 32%
+    .alt
+      margin: 0 2%
+      blockquote
+        +leader(2)
+        &:after
+          background: url('../images/bg-quote-alt.png') no-repeat
+          bottom: auto
+          top: -21px
+      a
+        left: 0
+        position: absolute
+        top: 0
 
+// ----- Subnav ----- //
 
-pre, ul
-  margin-bottom: 1em
+.subnav
+  @extend %group
+  a
+    color: lighten(#69868a,10%)
+    font-weight: bold
+  +respond-to(500px)
+    list-style: none
+    position: relative
+    top: -37px
+    li
+      background: $color-bg
+      border-right: 1px solid lighten($color-alt,35%)
+      float: left
+      margin: 0
+      &:first-child a
+        padding-left: 0
+    a
+      display: block
+      padding: 0 1em
 
-pre
-  margin-left: 2em
-  & code, &.haml, &.erb, &.html
-    +inline-block
-    padding: 3px 5px
-    +border-radius(4px)
-    border:
-      style: solid
-      width: 1px
-  code
-    border-color: $border-color
-    background-color: #fff8f8
-  &.haml
-    border-color: $main-color
-    background-color: #ffeee0
-  &.erb, &.html
-    background-color: #e5e5e5
-    border-color: #777777
+//---------------------------------------
+//  Application
+//---------------------------------------
 
-h4
-  margin:
-    left: 3em
-    bottom: -0.3em
-  font:
-    weight: normal
-    family: monospace
-    size: 0.8em
+// ----- Header ----- //
+
+header
+  @extend %group
+  +padding-leader(1)
+  +padding-trailer(1)
+  li
+    font-weight: bold
+    list-style: none
+    margin: 0
+    a
+      +leading-border
+      +padding-leader(0.5)
+      +padding-trailer(0.5)
+      border-color: lighten($color-alt,35%)
+      display: block
+      text-align: center
+    &:last-child a
+      +trailing-border($lines:0.5)
+  .logo
+    display: block
+    margin: 0 auto
+    +trailer(1)
+    width: 276px
+  img
+    display: block
+    max-width: 100%
+    width: 276px
+  +respond-to(815px)
+    ul
+      float: right
+      margin-top: 45px
+    li
+      float: left
+      margin: 0 0 0 2em
+      a
+        border: 0
+        padding: 0
+      &:last-child a
+        border: 0
+    .logo
+      float: left
+      margin: 0
+
+// ----- Footer ----- //
+
+footer
+  background: url('../images/bg-footer.png') 0 0 repeat-x
+  padding-top: 50px
+  text-align: center
+  p
+    +adjust-font-size-to(13px)
+    +rhythm(0,2,2,0,13px)
+    +background(linear-gradient(#e0e0d8, #eaeae1))
+    background-color: #e0e0d8
+    padding-left: 5%
+    padding-right: 5%
+
+//---------------------------------------
+//  Home
+//---------------------------------------
+
+// ----- Hero ----- //
+
+.hero
+  @extend .block
+  text-align: center
+  img
+    max-width: 100%
+  .boat
+    margin-top: -40px
+    position: relative
+  .boat-img
+    -webkit-animation: bob 1s ease-in-out alternate 100
+    -moz-animation: bob 1s ease-in-out alternate 100
+    -o-animation: bob 1s ease-in-out alternate 100
+    animation: bob 1s ease-in-out alternate 100
+    left: 0
+    position: absolute
+    top: 0
+  h1
+    +adjust-font-size-to(20px)
+    +trailer(1,20px)
+  b
+    display: block
+
+  // Media Queries
+
+  +respond-to(500px)
+    .boat-img
+      left: 50%
+      margin-left: -250px
+    h1
+      +adjust-font-size-to(30px)
+      +trailer(1,30px)
+      text-align: center
+    b
+      display: inline
+  +respond-to(815px)
+    text-align: left
+    h1
+      text-align: left
+    .box
+      float: left
+      width: 50%
+    .boat
+      margin-top: 0
+    .boat-img
+      left: 0
+      margin-left: 0
+    b
+      display: block
+  +respond-to(940px)
+    .boat
+      margin-top: -40px
+    b
+      display: inline
+  +respond-to(1100px)
+    h1
+      +adjust-font-size-to(40px)
+      +trailer(1,40px)
+
+// ----- Sample ----- //
+
+.sample
+  @extend .block
+  background-color: #fff
+  position: relative
+  .box
+    position: relative
+    &:first-child
+      border-bottom: 5px solid $color-bg
+  pre
+    +padding-leader(2)
+    +padding-trailer(2)
+    background: none
+    color: $color-alt
+    margin: 0
+
+  // Media Queries
+
+  +respond-to(750px)
+    pre
+      margin: 0 40px
+  +respond-to(875px)
+    background: #fff url('../images/bg-sample.png') center repeat-y
+    .box
+      float: left
+      width: 50%
+      &:first-child
+        border-bottom: 0
+    pre
+      margin: 0
+  +respond-to(1050px)
+    &:before
+      background: url('../images/bg-sample-arrow.png') no-repeat
+      content: ''
+      display: block
+      height: 87px
+      left: 50%
+      margin: -43px 0 0 -62px
+      position: absolute
+      top: 50%
+      width: 125px
+      z-index: 1
+    pre
+      margin: 0 40px
+
+.sample-erb
+  @extend %ir
+  background: url('../images/bg-sample-erb.png') no-repeat
+  height: 85px
+  left: -15px
+  margin: 0
+  position: absolute
+  top: -$base-line-height
+  width: 108px
+.sample-haml
+  @extend .sample-erb
+  background: url('../images/bg-sample-haml.png') no-repeat
+  left: auto
+  right: -15px
+
+// ----- About ----- //
+
+.about
+  img
+    display: block
+    margin: 0 auto
+    max-width: 50%
+  h2
+    +leader(1,26px)
+
+  // Media Queries
+
+  +respond-to(600px)
+    background: url('../images/bg-about.png') right bottom no-repeat
+    .box
+      float: left
+      width: 60%
+    img
+      float: right
+      max-width: 40%
+
+//---------------------------------------
+//  Error
+//---------------------------------------
+
+.error
+  text-align: center
+  img
+    display: block
+    margin: 0 auto
+    max-width: 100%
+  h2
+    +trailer(0.5,26px)

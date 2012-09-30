@@ -1,29 +1,22 @@
-:markdown
-  ### [Tutorial](/tutorial.html)
+.content
+  %h1
+    = img 'img-badge-documentation.png', alt: 'Documentation'
+    Documentation
+  = partial 'subnav'
 
-  The tutorial is a great place to start
-  if you aren't familiar with the language.
-  It goes over the basic syntax for elements,
-  as well as how to embed Ruby in the document.
+  :markdown
+    ## Tutorial
 
+    [The tutorial](/tutorial.html) is a great place to start if you aren't familiar with the language. It goes over the basic syntax for elements, as well as how to embed Ruby in the document.
 
-  ### [Haml Reference](/docs/yardoc/file.HAML_REFERENCE.html)
+    ## Haml Reference
 
-  The Haml reference is the most complete documentation for Haml.
-  It contains information on every language feature,
-  all the [options](/docs/yardoc/file.HAML_REFERENCE.html#options),
-  and how to [install it as a Rails plugin](/docs/yardoc/file.HAML_REFERENCE.html#plugin).
+    [The Haml reference](/docs/yardoc/file.HAML_REFERENCE.html) is the most complete documentation for Haml. It contains information on every language feature, all the [options](/docs/yardoc/file.HAML_REFERENCE.html#options), and how to [install it as a Rails plugin](/docs/yardoc/file.HAML_REFERENCE.html#plugin).
 
-  ### [FAQ](/docs/yardoc/file.FAQ.html)
+    ## FAQ
 
-  If you're having trouble or have a question, try the FAQ.
-  If you don't find what you're looking for there,
-  ask [the Haml community](/help.html).
+    If you're having trouble or have a question, try [the FAQs](/docs/yardoc/file.FAQ.html). If you don't find what you're looking for there, ask [the Haml community](/help.html).
 
-  ### [API Documentation](/docs/yardoc/)
+    ## API Documentation
 
-  Finally, if you want to look at the Haml implementation,
-  check out the [YARD](http://yardoc.org) API documentation.
-  This probably won't be too useful for most people,
-  but if you're writing Ruby code to interact with Haml,
-  that's a good place to look.
+    Finally, if you want to look at the Haml implementation, check out the [YARD](http://yardoc.org) [API Documentation](/docs/yardoc/). This probably won't be too useful for most people, but if you're writing Ruby code to interact with Haml, it's a good place to look.
