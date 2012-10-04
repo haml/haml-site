@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    chunky_png (1.2.5)
+    chunky_png (1.2.6)
     compass (0.11.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -12,7 +12,7 @@ GEM
       syntax (>= 1.0.0)
     rack (1.4.1)
     rake (0.9.3.beta.1)
-    sass (3.1.16)
+    sass (3.2.1)
     staticmatic (0.11.1)
       compass (>= 0.10.0)
       haml (>= 2.0.0)

@@ -1,0 +1,126 @@
+//---------------------------------------
+//  Base
+//---------------------------------------
+
++establish-baseline
+
+html
+  background: $color-bg url('../images/bg-body.png') bottom left repeat-x
+
+body
+  color: $color-base
+  font-family: $font-base
+
+// ----- Block Content ----- //
+
+h1
+  +adjust-font-size-to(30px)
+  +trailer(1,30px)
+  color: $color-alt
+  text-align: center
+  .content &
+    +trailing-border($font-size: 30px)
+    border-color: lighten($color-alt,35%)
+  img
+    display: block
+    margin: 0 auto
+    +trailer(1,72px)
+
+  // Media Queries
+
+  +respond-to(500px)
+    +adjust-font-size-to(50px)
+    +trailer(1,50px)
+    text-align: left
+    .content &
+      +trailing-border($font-size: 50px)
+    img
+      float: right
+      margin: 0
+      position: relative
+      top: -2px
+      vertical-align: top
+
+h2
+  +adjust-font-size-to(26px)
+  color: $color-base
+  font-weight: bold
+
+h3
+  +adjust-font-size-to(19px)
+  +adjust-leading-to(2,19px)
+  color: $color-alt
+
+p
+  +trailer(1)
+
+ol
+  list-style: decimal
+
+ul
+  list-style: disc
+
+li
+  +leader(0.5)
+  +trailer(0.5)
+  margin-left: 2em
+  p
+    margin: 0
+
+pre
+  +adjust-font-size-to(12px)
+  +rhythm(0,1,1,1,12px)
+  background: #fff
+  font-family: $font-mono
+  overflow-x: auto
+  padding-left: 40px
+  padding-right: 40px
+  &.haml
+    background: lighten(#69868a,35%)
+  .tag
+    color: $color-base
+  .pun
+    color: #63878b
+  +respond-to(500px)
+    +adjust-font-size-to(16px)
+    +rhythm(0,1,1,1)
+
+// ----- Inline Content ----- //
+
+a
+  color: $color-link
+  text-decoration: none
+  &:hover,
+  &:focus
+    color: lighten($color-link,10%)
+    text-decoration: underline
+
+strong
+  color: $color-base
+  font-weight: bold
+
+code
+  background: #fff
+  border: 1px solid lighten($color-alt,40%)
+  border-radius: 2px
+  color: $color-alt
+  font-family: $font-mono
+  padding: 0 3px
+
+// ----- Containers ----- //
+
+.cell
+  margin: 0 auto
+  max-width: 1000px
+  width: 90%
+
+.block
+  @extend %group
+  +leader(2)
+  +trailer(2)
+
+.content
+  @extend .block
+  +respond-to(750px)
+    margin-left: 80px
+    margin-right: 80px

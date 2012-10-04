@@ -1,29 +1,32 @@
-!!!
-%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
-  %head
-    %link{:rel => "shortcut icon", :href => "/images/haml_icon.ico", :type => "image/vnd.microsoft.icon"}/
-    %meta{:name => "verify-v1", :content => "3zvYccFjus45bkqbIvoSzbVRlaQ3JBhHOcC/+DpAeoc="}/
-    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
-    %meta{:name => "description", :content => "A Template Engine for Ruby on Rails"}/
-    %meta{:name => "keywords", :content => "Haml, HAML, haml, Rails, Ruby, Ruby on Rails, Template, Template Engine, HTML Abstraction Markup Language"}/
-    %title&= css
-    = stylesheets :application
-  %body
-    #page
-      = partial "header"
-      #main
-        = partial "sidebar"
-        - unless local_page.empty?
-          %h1&= css
-        = yield
-      = partial "footer"
-    :plain
-      <script type="text/javascript">
+!!! 5
+<!--[if lte IE 8]><html lang="en" class="ie"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+%head
+  %meta{charset: 'utf-8'}
+  %meta{name: 'viewport', content: 'width=device-width,initial-scale=1.0'}
+  %meta{name: 'description', content: 'A Template Engine for Ruby on Rails'}
+  %meta{name: 'keywords', content: 'Haml, HAML, haml, Rails, Ruby, Ruby on Rails, Template, Template Engine, HTML Abstraction Markup Language'}
+  %meta{name: 'verify-v1', content: '3zvYccFjus45bkqbIvoSzbVRlaQ3JBhHOcC/+DpAeoc='}
+  %title&= css
+  %link{rel: 'shortcut icon', href: '/images/favicon.ico', type: 'image/x-icon'}
+  = stylesheets :application
+  / [if lte IE 8]
+    %script(src="../javascripts/modernizr.js")
+
+%body
+  = partial 'header'
+  .cell= yield
+  = partial 'footer'
+  :plain
+    <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-      <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
       try {
-      var pageTracker = _gat._getTracker("UA-535380-9");
-      pageTracker._trackPageview();
-      } catch(err) {}</script>
+        var pageTracker = _gat._getTracker("UA-535380-9");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
