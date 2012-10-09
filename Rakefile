@@ -45,12 +45,13 @@ task :haml => ".haml" do
     sh %{git fetch}
     sh %{git checkout origin/stable}
     # Check out the most recent released stable version
-    sh %{git checkout #{File.read("VERSION").strip}}
+    File.read("lib/haml/version.rb").strip =~ /VERSION = (.*)\n/
+    sh %{git checkout #{$1}}
   end
 end
 
 file ".haml" do
-  sh %{git clone --depth 1 git://github.com/haml/haml.git .haml}
+  sh %{git clone git://github.com/haml/haml.git .haml}
   Dir.chdir(".haml") do
     sh %{git checkout origin/stable}
   end
