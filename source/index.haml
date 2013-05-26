@@ -1,17 +1,17 @@
 .hero
   .box.boat
-    = img 'img-hero.png', alt: 'Haml'
-    = img 'img-hero-boat.png', class: 'boat-img', alt: 'Templating Haiku'
+    = image_tag 'img-hero.png', alt: 'Haml'
+    = image_tag 'img-hero-boat.png', class: 'boat-img', alt: 'Templating Haiku'
   .box
     %h1
       Beautiful, DRY,<br />
       well-indented, clear markup:<br />
       %strong templating haiku.
     %p
-      = link 'Download Haml', '/download.html', class: 'btn'
+      = link_to 'Download Haml', '/download.html', class: 'btn'
       %b
         Latest: <strong>#{Haml::VERSION}</strong> -
-        %strong= link "What's New?", '/docs/yardoc/file.CHANGELOG.html'
+        %strong= link_to "What's New?", '/docs/yardoc/file.CHANGELOG.html'
 
 .sample
   .box
@@ -41,15 +41,15 @@
     %p Haml (HTML abstraction markup language) is based on one primary principle: <em>markup should be beautiful</em>. It’s not just beauty for beauty’s sake either; Haml accelerates and simplifies template creation down to veritable haiku.
     %p <a href="http://www.unspace.ca">Unspace Interactive</a> and several other professional Rails shops use Haml exclusively for their projects, valuing its focus on cleanliness, readability, and production speed.
     %p Give yourself 5 minutes to read the <a href="/tutorial.html">tutorial</a> and then convert one of your ERB templates to Haml. Simplify. Enjoy. Laugh. 20 minutes later, you will never go back.
-  = img 'img-about.png', alt: 'About Haml'
+  = image_tag 'img-about.png', alt: 'About Haml'
 
 %ul.quotes
   %li
     %blockquote Emotions when returning to haml (after erb): 1. This code looks pretty... 2. This is madness! 3. Hey, I remember how it's done. 4. Marry&nbsp;me?
-    = link '@eishe', 'http://twitter.com/eishe'
+    = link_to '@eishe', 'http://twitter.com/eishe'
   %li.alt
     %blockquote We have used Haml in every web project for the past 2 years and it has saved us an inestimable amount of time. Just&nbsp;brilliant.
-    = link '@edenspiekermann', 'http://twitter.com/edenspiekermann'
+    = link_to '@edenspiekermann', 'http://twitter.com/edenspiekermann'
   %li
     %blockquote The world would be a much better place if you used more HAML and less ERB. Stop being lazy and learn it today. #ruby takes over my&nbsp;brain.
-    = link '@tobrien', 'http://twitter.com/tobrien'
+    = link_to '@tobrien', 'http://twitter.com/tobrien'

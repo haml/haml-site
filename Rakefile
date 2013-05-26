@@ -1,4 +1,3 @@
-require 'rubygems'
 require "bundler/setup"
 require 'rake'
 require 'date'
@@ -11,33 +10,35 @@ if defined?(Encoding)
   Encoding.default_internal = 'UTF-8'
 end
 
-def staticmatic(command)
-  require '.haml/lib/haml'
-  require 'staticmatic'
-  configuration = StaticMatic::Configuration.new
-  eval(File.read("config/site.rb"))
-  StaticMatic::Base.new(".", configuration).run(command)
-end
-
 desc "Build everything."
 task :build => [:site, :yardoc]
 
-desc "Use StaticMatic to build the site."
-task(:site => :haml) {staticmatic "build"}
+#mostly from https://github.com/middleman/middleman/blob/master/middleman-core/bin/middleman
+def middleman(command)
+  require 'middleman-core/profiling'
+  Middleman::Profiling.start
+  require 'middleman-core/load_paths'
+  Middleman.setup_load_paths
+  require 'middleman-core/cli'
+  Middleman::Cli::Base.start([command])
+end
 
-desc "Preview the site with StaticMatic."
-task(:preview => :haml) {staticmatic "preview"}
+desc "Use Middleman to build the site."
+task(:site => :haml) { middleman 'build' } 
+
+desc "Preview the site with Middleman."
+task(:preview => :haml) { middleman 'server' }
 
 desc "Sync files to web server"
-task(:sync) { sh "rsync -e 'ssh -p 2233' -avz site/ haml.info:/var/sites/haml.info/"}
+task(:sync) { sh "rsync -e 'ssh -p 2233' -avz build/ haml.info:/var/sites/haml.info/"}
 
 desc "Build the YARD documentation."
 task :yardoc => :haml do
   require 'fileutils'
-  Dir.chdir(".haml") {sh %{rake doc ANALYTICS=UA-3592613-6 YARD_TITLE="Haml Documentation"}}
-  FileUtils.mkdir_p("site/docs")
-  FileUtils.rm_rf("site/docs/yardoc")
-  FileUtils.mv(".haml/doc", "site/docs/yardoc")
+  Dir.chdir(".haml") {sh %{bundle exec rake doc ANALYTICS=UA-3592613-6 YARD_TITLE="Haml Documentation"}}
+  FileUtils.mkdir_p("build/docs")
+  FileUtils.rm_rf("build/docs/yardoc")
+  FileUtils.mv(".haml/doc", "build/docs/yardoc")
 end
 
 task :haml => ".haml" do

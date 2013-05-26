@@ -13,6 +13,4 @@
 *.rbc
 .rvmrc
 .DS_Store
-site/*.html
-site/docs
-site/stylesheets
+/build
