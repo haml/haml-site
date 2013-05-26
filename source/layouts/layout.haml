@@ -10,11 +10,11 @@
   %meta{name: 'keywords', content: 'Haml, HAML, haml, Rails, Ruby, Ruby on Rails, Template, Template Engine, HTML Abstraction Markup Language'}
   %meta{name: 'verify-v1', content: '3zvYccFjus45bkqbIvoSzbVRlaQ3JBhHOcC/+DpAeoc='}
   %meta{name: "google-site-verification", content: "_HduvdWLa6WXLgvQNiBbFDb18ZqvHMp_4ocOTEz0Drc"}
-  %title&= css
+  %title&= page_title
   %link{rel: 'shortcut icon', href: '/images/favicon.ico', type: 'image/x-icon'}
-  = stylesheets :application
+  = stylesheet_link_tag 'application'
   / [if lte IE 8]
-    %script(src="../javascripts/modernizr.js")
+    %script(src='../javascripts/modernizr.js')
 %body
   = partial 'header'
   .cell= yield

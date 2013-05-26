@@ -1,9 +1,13 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem "staticmatic"
-gem "maruku"
-gem "haml", "3.2.0.rc.1"
-gem "haml-contrib"
-gem "compass", "0.11.7"
-gem "rake", "0.9.3.beta.1"
-gem "yard"
+gem 'middleman', '~> 3.0.14'
+gem 'haml', '~> 4.0.0'
+gem 'haml-contrib'
+gem 'compass', '~> 0.12.2'
+gem 'rake'
+gem 'yard'
+
+gem 'middleman-livereload'
+gem 'json', '~> 1.7.7' #required by middleman
+gem 'rb-inotify', '~> 0.9'
+
