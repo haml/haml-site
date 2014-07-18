@@ -7,7 +7,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.9)
-    haml (3.2.0.rc.1)
+    haml (4.1.0.beta.1)
       tilt
     haml-contrib (0.0.1)
       haml (>= 3.2.0.alpha.13)
@@ -15,13 +15,13 @@ GEM
       syntax (>= 1.0.0)
     rack (1.4.1)
     rake (0.9.3.beta.1)
-    sass (3.2.1)
+    sass (3.2.19)
     staticmatic (0.11.1)
       compass (>= 0.10.0)
       haml (>= 2.0.0)
       rack (>= 1.0)
     syntax (1.0.0)
-    tilt (1.3.3)
+    tilt (2.0.1)
     yard (0.8.2.1)
 
 PLATFORMS
@@ -29,9 +29,10 @@ PLATFORMS
 
 DEPENDENCIES
   compass (= 0.11.7)
-  haml (= 3.2.0.rc.1)
+  haml (~> 4.0)
   haml-contrib
   maruku
   rake (= 0.9.3.beta.1)
+  sass (~> 3.2.19)
   staticmatic
   yard
