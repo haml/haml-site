@@ -19,6 +19,12 @@ def staticmatic(command)
   StaticMatic::Base.new(".", configuration).run(command)
 end
 
+desc "Checkout haml.github.io submodule"
+task :submodules do
+  sh %{git submodule sync}
+  sh %{git submodule update --init --recursive}
+end
+
 desc "Build everything."
 task :build => [:site, :yardoc]
 
@@ -29,7 +35,12 @@ desc "Preview the site with StaticMatic."
 task(:preview => :haml) {staticmatic "preview"}
 
 desc "Sync files to web server"
-task(:sync) { sh "rsync -e 'ssh -p 2233' -avz site/ haml.info:/var/sites/haml.info/"}
+task(:sync) do
+  Dir.chdir('site') do
+    sh "git commit -a -m 'Regenerated website'"
+    sh "git push"
+  end
+end
 
 desc "Build the YARD documentation."
 task :yardoc => :haml do
