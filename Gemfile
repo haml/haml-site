@@ -1,10 +1,10 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem "sass", '~> 3.2.19'
 gem "staticmatic"
 gem "maruku"
-gem "haml", "~> 4.0"
+gem "haml", "~> 4.1.0.beta.1"
 gem "haml-contrib"
 gem "compass", "0.11.7"
-gem "rake", "0.9.3.beta.1"
+gem "rake"
 gem "yard"
