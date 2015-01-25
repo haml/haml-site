@@ -26,7 +26,7 @@ task :submodules do
 end
 
 desc "Build everything."
-task :build => [:site, :yardoc]
+task :build => [:submodules, :site, :yardoc]
 
 desc "Use StaticMatic to build the site."
 task(:site => :haml) {staticmatic "build"}
@@ -35,7 +35,7 @@ desc "Preview the site with StaticMatic."
 task(:preview => :haml) {staticmatic "preview"}
 
 desc "Sync files to web server"
-task(:sync) do
+task(:sync => :submodules) do
   Dir.chdir('site') do
     sh "git commit -a -m 'Regenerated website'"
     sh "git push"
