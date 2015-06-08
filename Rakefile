@@ -23,6 +23,10 @@ desc "Checkout haml.github.io submodule"
 task :submodules do
   sh %{git submodule sync}
   sh %{git submodule update --init --recursive}
+  Dir.chdir('site') do
+    sh "git checkout master"
+    sh "git pull"
+  end
 end
 
 desc "Build everything."
