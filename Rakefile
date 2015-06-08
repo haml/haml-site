@@ -59,9 +59,6 @@ task :haml => ".haml" do
   Dir.chdir(".haml") do
     sh %{git fetch}
     sh %{git checkout origin/stable}
-    # Check out the most recent released stable version
-    File.read("lib/haml/version.rb").strip =~ /VERSION = (.*)\n/
-    sh %{git checkout #{$1}}
   end
 end
 
