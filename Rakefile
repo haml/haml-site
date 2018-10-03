@@ -41,7 +41,8 @@ task(:preview => :haml) {staticmatic "preview"}
 desc "Sync files to web server"
 task(:sync => :submodules) do
   Dir.chdir('site') do
-    sh "git commit -a -m 'Regenerated website'"
+    sh "git add ."
+    sh "git commit -m 'Regenerated website'"
     sh "git push"
   end
 end
