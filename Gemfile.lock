@@ -7,7 +7,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.10)
-    haml (5.1.1)
+    haml (5.1.2)
       temple (>= 0.8.0)
       tilt
     haml-contrib (1.0.0.1)
@@ -15,14 +15,14 @@ GEM
     kramdown (2.1.0)
     maruku (0.7.3)
     rack (2.0.7)
-    rake (12.3.2)
+    rake (13.0.1)
     sass (3.2.19)
     staticmatic (0.11.1)
       compass (>= 0.10.0)
       haml (>= 2.0.0)
       rack (>= 1.0)
-    temple (0.8.1)
-    tilt (2.0.9)
+    temple (0.8.2)
+    tilt (2.0.10)
     yard (0.9.20)
 
 PLATFORMS
