@@ -15,7 +15,7 @@ GEM
     kramdown (2.2.1)
       rexml
     maruku (0.7.3)
-    rack (2.2.2)
+    rack (2.2.3)
     rake (13.0.1)
     rexml (3.2.4)
     sass (3.2.19)
