@@ -17,7 +17,7 @@ GEM
     maruku (0.7.3)
     rack (2.2.3)
     rake (13.0.1)
-    rexml (3.2.4)
+    rexml (3.2.5)
     sass (3.2.19)
     staticmatic (0.11.1)
       compass (>= 0.10.0)
