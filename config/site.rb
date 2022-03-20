@@ -7,6 +7,7 @@ Compass.configuration do |config|
   # Please update this if it is or remove this message if it can stay the way it is.
   config.project_path = File.dirname(__FILE__)
   config.sass_dir = File.join('src', 'stylesheets' )
+  config.sass_options = {line_comments: false}
 end
 
 module StaticMatic::Helpers
