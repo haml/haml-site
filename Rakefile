@@ -11,6 +11,11 @@ if defined?(Encoding)
   Encoding.default_internal = 'UTF-8'
 end
 
+# Monkey-patching for compass 0.11.7 on Ruby 3.2+
+unless File.respond_to? :exists?
+  File.instance_eval { alias exists? exist? }
+end
+
 def staticmatic(command)
   require '.haml/lib/haml'
   require 'staticmatic'
