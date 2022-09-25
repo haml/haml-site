@@ -21,6 +21,6 @@ module StaticMatic::Helpers
 
   def h_and_preserve(content = nil, &block)
     return preserve(CGI.escapeHTML(content)) if content
-    return h_and_preserve(capture_haml(&block).strip)
+    return h_and_preserve(yield.strip)
   end
 end
