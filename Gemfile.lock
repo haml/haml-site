@@ -7,14 +7,18 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.10)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.0.1)
+      temple (>= 0.8.2)
+      thor
       tilt
     haml-contrib (1.0.0.1)
       haml (>= 3.2.0.alpha.13)
-    kramdown (2.3.1)
+    kramdown (2.4.0)
       rexml
-    rack (2.2.3.1)
+    rack (3.0.0)
+    rackup (0.2.2)
+      rack (>= 3.0.0.beta1)
+      webrick
     rake (13.0.6)
     rake-compiler (1.2.0)
       rake
@@ -25,7 +29,8 @@ GEM
       haml (>= 2.0.0)
       rack (>= 1.0)
     temple (0.8.2)
-    tilt (2.0.10)
+    thor (1.2.1)
+    tilt (2.0.11)
     webrick (1.7.0)
     yard (0.9.28)
       webrick (~> 1.7.0)
@@ -38,6 +43,7 @@ DEPENDENCIES
   haml
   haml-contrib
   kramdown
+  rackup
   rake
   rake-compiler
   sass (~> 3.2.19)
