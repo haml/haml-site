@@ -16,11 +16,27 @@ unless File.respond_to? :exists?
   File.instance_eval { alias exists? exist? }
 end
 
+module StaticMaticRenderMixinMonkeyPatch
+  def generate_html_from_template_source(source, options = {}, &block)
+    options = options.dup
+    locals  = options.delete(:locals) || {}
+    options[:escape_html] = false
+    template = Haml::Template.new(options) { source }
+    template.render(@scope, locals, &block)
+  end
+end
+
 def staticmatic(command)
   require '.haml/lib/haml'
   require 'staticmatic'
   configuration = StaticMatic::Configuration.new
   eval(File.read("config/site.rb"))
+
+  # Monkey-patching for Haml 6 + StaticMatic
+  if Haml::Engine.method(:initialize).arity == -1
+    StaticMatic::Base.prepend StaticMaticRenderMixinMonkeyPatch
+  end
+
   StaticMatic::Base.new(".", configuration).run(command)
 end
 
