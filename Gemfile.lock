@@ -7,13 +7,13 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.10)
-    haml (6.0.12)
+    haml (6.1.1)
       temple (>= 0.8.2)
       thor
       tilt
     kramdown (2.4.0)
       rexml
-    rack (3.0.1)
+    rack (3.0.2)
     rackup (0.2.3)
       rack (>= 3.0.0.beta1)
       webrick
