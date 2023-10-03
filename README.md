@@ -1,1 +1,1 @@
-This contains the [haml.info](http://haml.info) website.
+This contains the [haml.info](https://haml.info/) website.
