@@ -20,7 +20,7 @@ GEM
     rake (13.1.0)
     rake-compiler (1.2.5)
       rake
-    rexml (3.3.3)
+    rexml (3.3.6)
       strscan
     sass (3.2.19)
     staticmatic (0.11.1)
