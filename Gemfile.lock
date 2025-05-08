@@ -13,7 +13,7 @@ GEM
       tilt
     kramdown (2.4.0)
       rexml
-    rack (3.0.14)
+    rack (3.0.16)
     rackup (2.1.0)
       rack (>= 3)
       webrick (~> 1.8)
