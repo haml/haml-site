@@ -20,7 +20,7 @@ GEM
     rake (13.1.0)
     rake-compiler (1.2.5)
       rake
-    rexml (3.3.9)
+    rexml (3.4.2)
     sass (3.2.19)
     staticmatic (0.11.1)
       compass (>= 0.10.0)
