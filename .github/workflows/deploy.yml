@@ -1,0 +1,45 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          # sass 3.2 expects File.exists?, which was dropped in Ruby 3.2.
+          # sass 3.3+ drops a file used by compass 0.11.
+          # compass 1.0 breaks staticmatic integration.
+          ruby-version: '3.1'
+          bundler-cache: true
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build site
+        run: bundle exec rake build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

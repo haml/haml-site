@@ -85,7 +85,7 @@ task :haml => ".haml" do
 end
 
 file ".haml" do
-  sh %{git clone git://github.com/haml/haml.git .haml}
+  sh %{git clone https://github.com/haml/haml.git .haml}
   Dir.chdir(".haml") do
     sh %{git checkout origin/main}
   end
