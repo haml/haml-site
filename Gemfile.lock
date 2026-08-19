@@ -13,11 +13,11 @@ GEM
       tilt
     kramdown (2.4.0)
       rexml
+    nio4r (2.7.5)
+    puma (8.0.2)
+      nio4r (~> 2.0)
     rack (3.1.18)
-    rackup (2.1.0)
-      rack (>= 3)
-      webrick (~> 1.8)
-    rake (13.1.0)
+    rake (13.4.2)
     rake-compiler (1.2.5)
       rake
     rexml (3.4.2)
@@ -29,7 +29,6 @@ GEM
     temple (0.10.3)
     thor (1.4.0)
     tilt (2.3.0)
-    webrick (1.8.2)
     yard (0.9.36)
 
 PLATFORMS
@@ -39,7 +38,7 @@ DEPENDENCIES
   compass (= 0.11.7)
   haml
   kramdown
-  rackup
+  puma
   rake
   rake-compiler
   sass (~> 3.2.19)
@@ -47,4 +46,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.5.0.dev
+  4.0.7
