@@ -1,43 +1,11 @@
-require 'rubygems'
 require "bundler/setup"
 require 'rake'
-require 'date'
 
 task :default => :preview
 
-$: << File.dirname(__FILE__)
-if defined?(Encoding)
-  Encoding.default_external = 'UTF-8'
-  Encoding.default_internal = 'UTF-8'
-end
-
-# Monkey-patching for compass 0.11.7 on Ruby 3.2+
-unless File.respond_to? :exists?
-  File.instance_eval { alias exists? exist? }
-end
-
-module StaticMaticRenderMixinMonkeyPatch
-  def generate_html_from_template_source(source, options = {}, &block)
-    options = options.dup
-    locals  = options.delete(:locals) || {}
-    options[:escape_html] = false
-    template = Haml::Template.new(options) { source }
-    template.render(@scope, locals, &block)
-  end
-end
-
 def staticmatic(command)
-  require '.haml/lib/haml'
-  require 'staticmatic'
-  configuration = StaticMatic::Configuration.new
-  eval(File.read("config/site.rb"))
-
-  # Monkey-patching for Haml 6 + StaticMatic
-  if Haml::Engine.method(:initialize).arity == -1
-    StaticMatic::Base.prepend StaticMaticRenderMixinMonkeyPatch
-  end
-
-  StaticMatic::Base.new(".", configuration).run(command)
+  require_relative 'config/boot'
+  HamlSite.staticmatic.run(command)
 end
 
 desc "Checkout haml.github.io submodule"
@@ -56,8 +24,8 @@ task :build => [:submodules, :site, :yardoc]
 desc "Use StaticMatic to build the site."
 task(:site => :haml) {staticmatic "build"}
 
-desc "Preview the site with StaticMatic."
-task(:preview => :haml) {staticmatic "preview"}
+desc "Preview the site with a local web server."
+task(:preview => :haml) { exec "bundle", "exec", "puma", "-p", ENV.fetch("PORT", "3000") }
 
 desc "Sync files to web server"
 task(:sync => :submodules) do
